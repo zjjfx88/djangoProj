@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link rel="stylesheet"  href="/static/commons.css" />
+		<style>
+			label{
+				width: 80px;
+				text-align: right;
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="/login/" method="post">
+			<p>
+				<label for="username" >用户名：</label>
+				<input id="username" name="user" type="text" />
+			</p>
+			<p>
+				<label for="password" >密码：</label>
+				<input id="password" name="pwd" type="password" />
+				<input type="submit" value="登录" />
+				<span style="color:red">{{error_msg}}</span>
+			</p>
+			
+		</form>	
+		<script src="/static/jquery-3.3.1.min.js"></script>
+	</body>
+</html>
