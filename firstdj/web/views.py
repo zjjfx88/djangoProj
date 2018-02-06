@@ -27,5 +27,17 @@ def login(request):
 # 	#django自己的方法
 # 	return render(request,'login.html')
 
+USER_LIST=[
+	{'username':'abc','gender':'男','email':'zjj1@163.com'},
+	{'username':'abc2','gender':'女','email':'zjj2@163.com'},
+	{'username':'abc3','gender':'男','email':'zjj3@163.com'}
+]
+
 def home(request):
-	return render(request,'home.html')
+	if request.method=='POST':
+		username=request.POST.get('username')
+		gender=request.POST.get('gender')
+		email=request.POST.get('email')
+		temp={'username':username,'gender':gender,'email':email}
+		USER_LIST.append(temp)
+	return render(request,'home.html',{'userlist':USER_LIST})

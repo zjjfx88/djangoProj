@@ -8,12 +8,20 @@
 	</head>
 	<body style="margin: 0;">
 		<div style="height: 48px; background-color: #dddddd;"></div>
+		<div>
+			<form action="/home/" method="post">
+				<input type="text" name="username" placeholder="用户名" />
+				<input type="text" name="gender" placeholder="性别" />
+				<input type="text" name="email" placeholder="邮箱" />
+				<input type="submit" value="添加"/>
+			</form>
+		</div>
 		<div id="">
 			<table border="" cellspacing="" cellpadding="">
 				<tr><th>姓名</th><th>性别</th><th>邮箱</th></tr>
-				<tr><td>jack</td><td>男</td><td>abcd@163.com</td></tr>
-				<tr><td>rose</td><td>女</td><td>cdef@163.com</td></tr>
-				<tr><td>jason</td><td>男</td><td>opq@163.com</td></tr>
+				{% for user in userlist %}
+				<tr><td>{{user.username}}</td><td>{{user.gender}}</td><td>{{user.email}}</td></tr>
+				{% endfor %}
 			</table>
 		</div>
 	</body>

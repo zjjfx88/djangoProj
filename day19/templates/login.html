@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<style>
+			label{
+				width: 80px;
+				text-align: right;
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<!--
+            	作者：zjj7842806@163.com
+            	时间：2018-02-05
+            	描述：如果需要上传文件的话，需要在form里面增加enctype="multipart/form-data"
+            -->
+			<form action="/login" method="post" enctype="multipart/form-data">
+				<p>
+					<label>用户名：</label>
+					<input type="text" name="username" id="" value="" placeholder="用户名"/>
+				</p>
+				<p>
+					<label>密码：</label>
+					<input type="password" name="password" id="" value="" placeholder="密码" />
+				</p>
+				
+				<p>
+					<label>男:</label>
+					<input type="radio" name="gender" value="1" />
+					<label>女:</label>
+					<input type="radio" name="gender" value="2" />
+				</p>
+				<p>
+					<label>篮球:</label>
+					<input type="checkbox" name="favor" value="11"/>
+					<label>游泳:</label>
+					<input type="checkbox" name="favor" value="22"/>
+					<label>跑步:</label>
+					<input type="checkbox" name="favor" value="33"/>
+				</p>
+				<p>
+					<select name="city" multiple >
+						<option value="sh">上海</option>
+						<option value="bj">北京</option>
+						<option value="tj">天津</option>
+					</select>
+				</p>
+				<p>
+					<input type="file" name="fafafa" />
+				</p>
+				<input type="submit" name="" id="" value="提交" />
+			</form>
+		</div>
+	</body>
+</html>
