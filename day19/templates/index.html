@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<!--
+            	作者：zjj7842806@163.com
+            	时间：2018-02-07
+            	描述：对于字典的循环
+            	for item in user_list循环取出的是key
+            	for item in user_list.keys循环取出的也是key
+            	for item in user_list.values循环取出的是values
+            	for item in user_list.items循环取出的是key和value
+            	for key,value in user_list.items循环分别取出的是key和value
+			{% for key,value in user_list.items %}
+			<li>{{key}}</li>
+			{% endfor %}
+			-->
+			
+			<!-- 普通形式的url 
+			{% for key,value in user_list.items %}
+			<li><a target="_blank" href="/detail?nid={{key}}" >{{value.name}}</a></li>
+			{% endfor %}
+			-->
+			<!-- 以html字符现实的url -->
+			{% for key,value in user_list.items %}
+			<li><a target="_blank" href="/detail-{{key}}.html" >{{value.name}}</a></li>
+			{% endfor %}
+			
+		</ul>
+		
+		
+	</body>
+</html>

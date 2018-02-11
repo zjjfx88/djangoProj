@@ -15,10 +15,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app01 import views
+from django.conf.urls import include
+#如果是多个app功能，则进行分发,引入from django.conf.urls import include，然后如下写
 
+urlpatterns = [
+    path('app01', include("app01.urls")),
+    path('app02', include("app02.urls")),
+]
+
+
+'''
+#只有一个app功能的时候
+from app01 import views
+from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index', views.index),
     path('login', views.login),
+    path('home', views.Myview.as_view()),
+    url('detail-(\d+).html', views.detaila),
+    url('detail-(?P<nid>\d+)-(?P<uid>\d+).html', views.detailb),
+    url('detail.html', views.detailc),
+    url('nametestnametest', views.nametest,name='namename'),
 ]
+'''
