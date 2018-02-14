@@ -25,7 +25,6 @@ from app01 import views
 from django.urls import path
 from django.conf.urls import url
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('index', views.index),
     url('login', views.login),
     path('home', views.Myview.as_view()),

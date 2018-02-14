@@ -25,7 +25,12 @@ from app02 import views
 from django.urls import path
 from django.conf.urls import url
 urlpatterns = [
-    path('admin/', admin.site.urls),
     url('login', views.login),
     url('orm', views.orm),
+    url('index', views.index),
+    url('user_info', views.user_info),
+    url('datail-(?P<nid>\d+)', views.user_detail),
+    url('del-(?P<nid>\d+)', views.user_del),
+    url('edit-(?P<nid>\d+)', views.user_edit),
+    url('group_add', views.group_add),
 ]

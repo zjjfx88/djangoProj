@@ -5,10 +5,16 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title></title>
+		<style>
+			.menu{
+				display: block;
+				padding: 5px;
+			}
+		</style>
 	</head>
-	<body>
-		<ul>
-			<!--
+	<body style="margin: 0;">
+		<!--<ul>
+			
             	作者：zjj7842806@163.com
             	时间：2018-02-07
             	描述：对于字典的循环
@@ -20,20 +26,33 @@
 			{% for key,value in user_list.items %}
 			<li>{{key}}</li>
 			{% endfor %}
-			-->
 			
-			<!-- 普通形式的url 
+			
+			 普通形式的url 
 			{% for key,value in user_list.items %}
 			<li><a target="_blank" href="/detail?nid={{key}}" >{{value.name}}</a></li>
 			{% endfor %}
-			-->
-			<!-- 以html字符现实的url -->
+			
+			 以html字符现实的url 
 			{% for key,value in user_list.items %}
-			<li><a target="_blank" href="/detail-{{key}}.html" >{{value.name}}</a></li>
+			<li><a target="_blank" href="/detail-{{key}}.html" >aaa{{value.name}}</a></li>
 			{% endfor %}
 			
-		</ul>
+		</ul>-->
 		
+		
+		<div>
+			<div style="height: 48px;background-color: black;color: white;">
+				后台管理
+			</div>
+			<div id="" style="position: absolute;background-color: gray;top:48px;left: 0;bottom: 0;width: 200px;">
+				<a class="menu" href="/app02/user_info">用户管理</a>
+				<a class="menu" href="/app02/user_group">用户组管理</a>
+			</div>
+			<div style="position: absolute;top: 48px;left: 210px;bottom: 0;right: 0;overflow: auto;">
+				
+			</div>
+		</div>
 		
 	</body>
 </html>

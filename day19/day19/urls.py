@@ -19,6 +19,7 @@ from django.conf.urls import include
 #如果是多个app功能，则进行分发,引入from django.conf.urls import include，然后如下写
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('app01', include("app01.urls")),
     path('app02', include("app02.urls")),
 ]

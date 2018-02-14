@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<style>
+			
+			.menu{
+				display: block;
+				padding: 5px;
+			}
+		</style>
+	</head>
+	<body style="margin: 0px;">
+		<div>
+			<div style="height: 48px;background-color: black;color: white;">
+				后台管理
+			</div>
+			<div id="" style="position: absolute;background-color: gray;top:48px;left: 0;bottom: 0;width: 200px;">
+				<a class="menu" href="/app02/user_info/">用户管理</a>
+				<a class="menu" href="/app02/user_group">用户组管理</a>
+			</div>
+			<div style="position: absolute;top: 48px;left: 210px;bottom: 0;right: 0;overflow: auto;">
+				<form action="/app02/edit-{{user.id}}" method="post">
+					<h1>编辑用户</h1>
+					<input style="display: none;"  type="text" name='id' value="{{user.id}}"/>
+					<input type="text" name='username' value="{{user.username}}" />
+					<input type="password" name='password' value="{{user.password}}" />
+					<input type="submit" value="保存" />
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
