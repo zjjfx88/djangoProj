@@ -52,7 +52,16 @@ def orm(request):
 	#更新全部
 	# models.UserInfo.objects.all().update(password='666')
 	#更新某条
-	models.UserInfo.objects.filter(username='zhangjj').update(password='123')
+	#models.UserInfo.objects.filter(username='zhangjj').update(password='123')
+
+	#一对多
+	#user_list = models.UserInfo.objects.all()
+	user_list = models.UserInfo.objects.create(
+		username = 'root1',
+		password = '123',
+		email = 'zjj@163.com',
+		user_group_id = 1
+	)
 	return HttpResponse('orm')
 
 def index(request):
@@ -60,17 +69,46 @@ def index(request):
 
 def user_info(request):
 	if request.method == 'GET':
-		userlist=models.UserInfo.objects.all()
 		# 打印实际执行的query使用userlist.query
-		return render(request,'user_info.html',{'user_list':userlist})
+		userlist=models.UserInfo.objects.all()
+		for row in userlist:
+			print(row.id)
+			print(row.user_group.uid)
+		grouplist = models.UserGroup.objects.all()
+
+		return render(request,'user_info.html',{'user_list':userlist,'group_list':grouplist})
 	else:
 		user = request.POST.get('username')
 		pwd = request.POST.get('password')
+		groupid = request.POST.get('group_id')
 		models.UserInfo.objects.create(
 			username=user,
 			password=pwd,
+			user_group_id=groupid,
 		)
 		return redirect('/app02/user_info')
+
+def user_info_b(request):
+	if request.method == 'GET':
+		# 打印实际执行的query使用userlist.query
+		userlist=models.UserInfo.objects.all()
+		# for row in userlist:
+		# 	print(row.id)
+		# 	print(row.user_group.uid)
+		grouplist = models.UserGroup.objects.all()
+
+		return render(request,'user_info_b.html',{'user_list':userlist,'group_list':grouplist})
+	else:
+		user = request.POST.get('username')
+		pwd = request.POST.get('password')
+		groupid = request.POST.get('group_id')
+		models.UserInfo.objects.create(
+			username=user,
+			password=pwd,
+			user_group_id=groupid,
+		)
+		return redirect('/app02/user_info_b')
+
 
 def user_detail(request,nid):
 	userdetail=models.UserInfo.objects.filter(id=nid).first()

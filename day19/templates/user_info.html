@@ -15,6 +15,8 @@
 	</head>
 	<body style="margin: 0px;">
 		<div>
+			
+			
 			<div style="height: 48px;background-color: black;color: white;">
 				后台管理
 			</div>
@@ -26,12 +28,18 @@
 				<form method="POST" action="/app02/user_info">
 					<input type="text" name="username" />
 					<input type="password" name="password" />
+					<select name="group_id">
+						{% for group in group_list%}
+						<option value="{{group.uid}}">{{group.caption}}</option>
+						{% endfor %}						
+					</select>
 					<input type="submit" value="添加" />
 				</form>
 				<h1>用户列表</h1>
 				<ul>
 					{% for item in user_list %}
 					<li><a href="/app02/datail-{{item.id}}">{{item.username}}</a> | 
+						<span>{{item.user_group.caption}}</span> | 
 						<a href="/app02/del-{{item.id}}">删除</a> | 
 						<a href="/app02/edit-{{item.id}}">编辑</a></li>
 					{% endfor %}
