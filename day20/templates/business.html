@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<h1>业务线列表(对象)</h1>
+			<ul>
+				{% for row in v1 %}
+				<li>{{row.id}} - {{row.caption}} - {{row.code}}</li>
+				{% endfor %}
+			</ul>
+			<h1>业务线列表(字典)</h1>
+			<ul>
+				{% for row in v2 %}
+				<li>{{row.id}} - {{row.caption}}</li>
+				{% endfor %}
+			</ul>
+			<h1>业务线列表(元组)</h1>
+			<ul>
+				{% for row in v3 %}
+				<li>{{row.0}} - {{row.1}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</body>
+</html>

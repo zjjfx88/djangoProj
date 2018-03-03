@@ -5,6 +5,9 @@ from django.db import models
 class Business(models.Model):
 	#id 自动创建
 	caption = models.CharField(max_length=32)
+	#新增一列code用来存储英文名字，如果执行makemigrations会报错，一种是根据报错提示输入一个默认是完成增加列
+	#另一种是在增加列名的时候增加null=True（不加的话默认不允许为空）
+	code = models.CharField(max_length=32,null=True)
 
 class Host(models.Model):
 	nid = models.AutoField(primary_key=True)

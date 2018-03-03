@@ -71,9 +71,9 @@ def user_info(request):
 	if request.method == 'GET':
 		# 打印实际执行的query使用userlist.query
 		userlist=models.UserInfo.objects.all()
-		for row in userlist:
-			print(row.id)
-			print(row.user_group.uid)
+		# for row in userlist:
+		# 	print(row.id)
+		# 	print(row.user_group.uid)
 		grouplist = models.UserGroup.objects.all()
 
 		return render(request,'user_info.html',{'user_list':userlist,'group_list':grouplist})
@@ -124,11 +124,13 @@ def user_del(request,nid):
 def user_edit(request,nid):
 	if request.method == 'GET':
 		user=models.UserInfo.objects.filter(id=nid).first()
-		return render(request,'user_edit.html',{'user':user})
+		grouplist = models.UserGroup.objects.all()
+		return render(request,'user_edit.html',{'user':user,'grouplist':grouplist})
 	elif request.method == 'POST':
 		user = request.POST.get('username')
 		pwd = request.POST.get('password')
-		models.UserInfo.objects.filter(id=nid).update(username=user,password=pwd)
+		group_id = request.POST.get('group_id')
+		models.UserInfo.objects.filter(id=nid).update(username=user,password=pwd,user_group_id=group_id)
 		return redirect('/app02/user_info')
 
 def group_add(request):

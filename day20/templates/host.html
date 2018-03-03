@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<!--
+	作者：zjj7842806@163.com
+	时间：2018-03-02
+	描述：1.使用ajax提交请求，后台判断之后再进行刷新或者错误提示
+	2.如果使用提交按钮，一旦输入的信息是错误的，则还是会刷新页面
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<style>
+			.hide{
+				display: none;
+			}
+			.shade{
+				position: fixed;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				left: 0;
+				opacity: 0.6;
+				background-color: #000000;
+				z-index: 9;
+			}
+			.addmodel{
+				position: fixed;
+				height: 300px;
+				width: 400px;
+				top: 50%;
+				left: 50%;
+				border: 1px solid;
+				background-color: white;
+				z-index: 10;
+				margin-top: -150px;
+				margin-left: -200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<h1>业务线列表(对象)</h1>
+			<input id="add_host" type="button" value="添加" />
+			<table border="1" cellspacing="" cellpadding="">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>主机名</th>
+						<th>IP</th>
+						<th>端口</th>
+						<th>业务线名称</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for row in v1 %}
+					<tr h_id='{{row.nid}}' b_id='{{row.b_id}}'>
+						<td>{{forloop.counter}}</td>
+						<td>{{row.hostname}}</td>
+						<td>{{row.ip}}</td>
+						<td>{{row.port}}</td>
+						<td>{{row.b.caption}}</td>				
+					</tr>
+				{% endfor %}
+				</tbody>
+				
+			</table>
+			
+			<h1>业务线列表(字典)</h1>
+			<table border="1" cellspacing="" cellpadding="">
+				<thead>
+					<tr>						
+						<th>主机名</th>
+						<th>业务线名称</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for row in v2 %}
+					<tr h_id='{{row.nid}}' b_id='{{row.b_id}}'>
+						<td>{{row.hostname}}</td>
+						<td>{{row.b__caption}}</td>				
+					</tr>
+				{% endfor %}
+				</tbody>
+				
+			</table>
+			
+			<h1>业务线列表(元组)</h1>
+			<table border="1" cellspacing="" cellpadding="">
+				<thead>
+					<tr>						
+						<th>主机名</th>
+						<th>业务线名称</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for row in v3 %}
+					<tr h_id='{{row.0}}' b_id='{{row.2}}'>
+						<td>{{row.1}}</td>
+						<td>{{row.3}}</td>				
+					</tr>
+				{% endfor %}
+				</tbody>
+				
+			</table>
+			
+		</div>
+		<div id='shade' class="shade hide"></div>
+		<div class="addmodel hide">
+			<form method="post" action="/host">
+				<div class="group">
+					<input id="host" type="text" name="hostname" placeholder="主机名" />
+				</div>
+				<div class="group">
+					<input id="ip" type="text" name="ip" placeholder="IP" />
+				</div>
+				<div class="group">
+					<input id='port' type="text" name="port" placeholder="端口" />
+				</div>
+				<div class="group">
+					<select name="b_id" id="sel">
+						{% for item in b_list %}
+						<option value="{{item.id}}">{{item.caption}}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<input type="submit" value="提交" />
+				<a id="ajax_submit" style="display: inline-block; padding: 5px;background-color: blue;color: white;">悄悄提交</a>
+				<input id="cancel" type="button" value="取消" />
+				<span id="error"></span>
+			</form>
+		</div>
+		<script src="/static/jquery-3.3.1.min.js"></script>
+		<script>
+			$(function(){
+				$('#add_host').click(function(){
+				$('.addmodel,.shade').removeClass('hide');
+				})
+				$('#shade').click(function(){
+					$('.shade,.addmodel').addClass('hide')
+				})
+				$('#cancel').click(function(){
+					$('.shade,.addmodel').addClass('hide')
+				})
+				$('#ajax_submit').click(function(){
+					$.ajax({
+						type:"POST",
+						url:"/text_ajax",
+						async:true,
+						data:{'hostname':$('#host').val(),'ip':$('#ip').val(),'port':$('#port').val(),'b_id':$('#sel').val()},
+						success:function(data){
+//							if(data == 'OK'){
+//								location.reload();
+//							}else{
+//								//alert(data);
+//								$('#error').text(data);
+//							}
+							var obj = JSON.parse(data)
+							if(obj.status){
+								location.reload()
+							}else{
+								$('#error').text(obj.error);
+							}
+						}
+					});
+				})
+			})
+			
+		</script>
+	</body>
+</html>

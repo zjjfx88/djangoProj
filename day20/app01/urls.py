@@ -20,6 +20,10 @@ __mtime__ = '2018/2/28'
                    ┃ ┫ ┫   ┃ ┫ ┫
                    ┗━┻━┛   ┗━┻━┛
 """
+from django.conf.urls import url
+from django.urls import re_path, path
+from app01 import views
 urlpatterns = [
-
+	re_path(r'^business/$', views.business),
+	re_path(r'host', views.host),
 ]
