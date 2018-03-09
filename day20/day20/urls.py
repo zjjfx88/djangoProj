@@ -24,6 +24,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('app01', include("app01.urls")),
     re_path(r'^business$', views.business),
-    re_path(r'host', views.host),
-    re_path(r'text_ajax', views.text_ajax),
-]+ static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+    re_path(r'^host', views.host),
+    re_path(r'^add_host_ajax', views.add_host_ajax),
+    re_path(r'^edit_host_ajax', views.edit_host_ajax),
+    re_path(r'^delete_host',views.delete_host),
+    re_path(r'^app$',views.app),
+    re_path(r'^ajax_add_app$',views.ajax_add_app),
+
+] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

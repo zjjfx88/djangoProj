@@ -57,12 +57,12 @@
 					{% for row in v1 %}
 					<tr h_id='{{row.nid}}' b_id='{{row.b_id}}'>
 						<td>{{forloop.counter}}</td>
-						<td>{{row.hostname}}</td>
-						<td>{{row.ip}}</td>
-						<td>{{row.port}}</td>
+						<td target="hostname" >{{row.hostname}}</td>
+						<td target='ip' >{{row.ip}}</td>
+						<td target='port' >{{row.port}}</td>
 						<td>{{row.b.caption}}</td>
 						<td>
-							<a id="edit_host">编辑 | </a><a> 删除</a>
+							<a class="edit_host">编辑 </a>|<a class="delete_host"> 删除</a>
 						</td>
 					</tr>
 				{% endfor %}
@@ -70,7 +70,7 @@
 				
 			</table>
 			
-			<h1>业务线列表(字典)</h1>
+			<!--<h1>业务线列表(字典)</h1>
 			<table border="1" cellspacing="" cellpadding="">
 				<thead>
 					<tr>						
@@ -106,12 +106,12 @@
 				{% endfor %}
 				</tbody>
 				
-			</table>
+			</table>-->
 			
 		</div>
 		<div id='shade' class="shade hide"></div>
 		<div class="addmodel hide">
-			<form method="post" action="/host">
+			<form id="add_form" method="post" action="/host">
 				<div class="group">
 					<input id="host" type="text" name="hostname" placeholder="主机名" />
 				</div>
@@ -129,7 +129,7 @@
 					</select>
 				</div>
 				<input type="submit" value="提交" />
-				<a id="ajax_submit" style="display: inline-block; padding: 5px;background-color: blue;color: white;">悄悄提交</a>
+				<a id="ajax_submit">悄悄提交</a>
 				<input id="cancel" type="button" value="取消" />
 				<span id="error"></span>
 			</form>
@@ -137,25 +137,22 @@
 
 		<div class="editmodel hide">
 			<form id="edit_form" method="post" action="/host">
-
-					<input type="text" name="hostname" placeholder="主机名" />
-
-
-					<input type="text" name="ip" placeholder="IP" />
-
-
-					<input type="text" name="port" placeholder="端口" />
-
-
-					<select name="b_id">
-						{% for item in b_list %}
-						<option value="{{item.id}}">{{item.caption}}</option>
-						{% endfor %}
-					</select>
-
-
+				<input type="text" name="nid" style="display: none;" />
+				
+				<input type="text" name="hostname" placeholder="主机名" />
+	
+				<input type="text" name="ip" placeholder="IP" />
+	
+				<input type="text" name="port" placeholder="端口" />
+	
+				<select name="b_id">
+					{% for item in b_list %}
+					<option value="{{item.id}}">{{item.caption}}</option>
+					{% endfor %}
+				</select>
+	
 				<a id="ajax_edit" style="display: inline-block; padding: 5px;background-color: blue;color: white;">提交</a>
-
+				<span id="edit_error"></span>
 			</form>
 		</div>
 
@@ -174,9 +171,13 @@
 				$('#ajax_submit').click(function(){
 					$.ajax({
 						type:"POST",
-						url:"/text_ajax",
+						url:"/add_host_ajax",
 						async:true,
-						data:{'hostname':$('#host').val(),'ip':$('#ip').val(),'port':$('#port').val(),'b_id':$('#sel').val()},
+						//方式一：以此以id为目标获取value，组成字典传递给后台服务
+						//方式二：$('#add_form').serialize(),
+						//data:{'hostname':$('#host').val(),'ip':$('#ip').val(),'port':$('#port').val(),'b_id':$('#sel').val()},
+						data:$('#add_form').serialize(),
+						//后台返回给前端的信息在seccess
 						success:function(data){
 //							if(data == 'OK'){
 //								location.reload();
@@ -193,12 +194,70 @@
 						}
 					});
 				})
-				$('#edit_host').click(function(){
+				$('.edit_host').click(function(){
+					//显示编辑弹窗和遮罩层
 					$('.editmodel,.shade').removeClass('hide');
+					//找到点击表格编辑链接后的父标签的父标签的业务线b_id属性
 					var bid = $(this).parent().parent().attr('b_id');
-					$('edit_form').find('select').val(bid);
+					var nid = $(this).parent().parent().attr('h_id');
+					//获取编辑按钮以上所有标签的内容
+					var tds = $(this).parent().prevAll();
+					//找到id为edit_form的form下面的select标签，并进行赋值
+					$('#edit_form').find('select').val(bid);
+					$('#edit_form').find('input[name="nid"]').val(nid);
+					//遍历每一行
+					tds.each(function(){
+						//获取target属性
+						var targetname = $(this).attr('target');
+						//取当前列的text内容
+						var targettext = $(this).text();
+						//给弹出框里面的input赋值，name属性和target属性值一样，这把targettext获取的text赋值给input
+						$('#edit_form input[name="'+targetname+'"]').val(targettext);
+					})
+					
+					
 				})
+				$('#ajax_edit').click(function(){
+					$.ajax({
+						data:$('#edit_form').serialize(),
+						type:"POST",
+						url:"/edit_host_ajax",
+						async:true,
+						success:function(data){
+							var obj = JSON.parse(data)
+							if(obj.status){
+								location.reload();
+							}else{
+								$('#edit_error').text(obj.error);
+							}
+						}
+					});
+				})
+				$('.delete_host').click(function(){
+					var nid = $(this).parent().parent().attr('h_id');
+					if(confirm('是否确认删除')){
+						$.ajax({
+							type:"POST",
+							url:"/delete_host",
+							data:{'nid':nid},
+							success:function(data){
+								var obj = JSON.parse(data)
+								if(obj.status){
+									location.reload();
+								}else{
+									$('#edit_error').text(obj.error);
+								}
+							},
+							async:true,
+						});
+					}else{
+						return;
+					}
+					
+				})
+
 			})
+			
 			
 		</script>
 	</body>
