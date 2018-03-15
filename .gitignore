@@ -1,5 +1,5 @@
-./firstdj/static
-./day19/upload
-./day19/.idea/*
-./day20/.idea/*
-
+__pycache__/
+upload/
+.idea/
+.project
+.vscode/
