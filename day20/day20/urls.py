@@ -30,5 +30,8 @@ urlpatterns = [
     re_path(r'^delete_host',views.delete_host),
     re_path(r'^app$',views.app),
     re_path(r'^ajax_add_app$',views.ajax_add_app),
-
+    re_path(r'^ajax_edit_app$',views.ajax_edit_app),
+    re_path(r'^app_edit_app$',views.app_edit_app),
+    re_path(r'^ajax_del_appname$',views.ajax_del_appname),
+    re_path(r'^ajax_del_line$',views.ajax_del_line)
 ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

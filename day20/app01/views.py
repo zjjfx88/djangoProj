@@ -128,23 +128,94 @@ def app(request):
 		app_list = models.Application.objects.all()
 		host_list = models.Host.objects.all()
 		# for row in app_list:
-		# 	print(row.name,row.r.all())
+		# 	print(row.name,row.r.all)
 
 		return render(request,'app.html',{'app_list':app_list,'host_list':host_list})
 	elif request.method == 'POST':
 		#增加数据
 		appname = request.POST.get('app_name')
 		hostlist = request.POST.getlist('host_list')
-		print(appname,hostlist)
+		#print(appname,hostlist)
+		nameisExist = models.Application.objects.filter(name = appname)
+		if nameisExist and hostlist:
+			nameisExist.r.add(*hostlist)
+		else:
+			obj = models.Application.objects.create(name=appname)
+			obj.r.add(*hostlist)
 
-		obj = models.Application.objects.create(name = appname)
-		obj.r.add(*hostlist)
 		return redirect('/app')
 
 
 def ajax_add_app(request):
 	ret = {'status':True,'errro':None,'data':None}
-	user = request.POST.get('user')
-	pwd = request.POST.get('pwd')
-	print(user,pwd)
+	app_name = request.POST.get('app_name')
+
+	host_list = request.POST.getlist('host_list')
+	try:
+		obj = models.Application.objects.filter(name=app_name)
+		if obj:
+			obj.r.add(*host_list)
+		else:
+			createname = models.Application.objects.create(name=app_name)
+			obj.r.add(*host_list)
+	except Exception as e:
+		ret['error'] = '请求错误'
+		ret['status'] = False
+	# for item in host_list:
+	# 	print(host_list)
+	return HttpResponse(json.dumps(ret))
+
+def app_edit_app(request):
+	aid = request.POST.get('aid')
+	appname = request.POST.get('appname')
+	hostlist = request.POST.getlist('b_id')
+	obj = models.Application.objects.get(id=aid)
+	obj.name = appname
+	obj.save()
+	obj.r.set(hostlist)
 	return redirect('/app')
+
+
+def ajax_edit_app(request):
+	ret = {'status':True,'error':None,'data':None}
+	aid = request.POST.get('aid')
+	appname = request.POST.get('appname')
+	hostlist = request.POST.getlist('b_id')
+	#print(aid,appname,hostlist)
+	# for item in hostlist:
+	# 	print(item)
+	try:
+		obj = models.Application.objects.get(id=aid)
+		obj.name=appname
+		obj.save()
+		obj.r.set(hostlist)
+	except Exception as e:
+		print(e)
+		ret['status'] = False
+		ret['error'] = '请求错误'
+	return HttpResponse(json.dumps(ret))
+
+def ajax_del_appname(request):
+	ret = {'status': True, 'error': None, 'data': None}
+	aid = request.POST.get('app_id')
+	hid = request.POST.get('host_id')
+	try:
+		obj = models.Application.objects.get(id=aid)
+		obj.r.remove(hid)
+	except Exception as e:
+		ret['status'] = False
+		ret['error'] = '请求错误'
+	return HttpResponse(json.dumps(ret))
+
+
+def ajax_del_line(request):
+	ret = {'status': True, 'error': None, 'data': None}
+	aid = request.POST.get('app_id')
+	try:
+		obj = models.Application.objects.get(id=aid)
+		obj.r.clear()
+		#obj.delete()
+	except Exception as e:
+		ret['status'] = False
+		ret['error'] = '请求错误'
+	return HttpResponse(json.dumps(ret))

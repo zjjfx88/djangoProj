@@ -35,7 +35,7 @@
 				display: inline-block;
 				padding: 3px;
 				border: 1px solid red;
-				background-color: palevioletred;
+				background-color: #66AFE9;
 			}
 		</style>
 	</head>
@@ -47,24 +47,29 @@
 				<tr>
 					<td>应用名称</td>
 					<td>应用主机列表</td>
+					<td>操作</td>
 				</tr>
 			</thead>
 			<tbody>
 				{% for item in app_list%}
-				<tr>
+				<tr host_id='{{item.id}}'>
 					<td>{{item.name}}</td>
 					<td>
 						{% for host in item.r.all %}
-							<span class="host-tag">{{host.hostname}}</span>
+							<span class="host-tag" hid='{{host.nid}}'>{{host.hostname}}<a class="delete_app"style="color: red;cursor: pointer;"> x </a></span>							
 						{% endfor %}
 					</td>
+					<td>
+						<a class="edit_app" style="cursor: pointer;">编辑 </a> | <a class="del_line" style="cursor: pointer;"> 删除</a>
+					</td>
 				</tr>
+				<span id="global_err" style="display: none;"></span>
 				{% endfor %}
 			</tbody>
 		</table>
 				<div id='shade' class="shade hide"></div>
 		<div class="addmodel hide">
-			<form id="add_form" method="post" action="/app">
+			<form id="add_form_app" method="post" action="/app">
 				<div class="group">
 					<input id="app_name" type="text" name="app_name" placeholder="应用名称" />
 				</div>
@@ -77,26 +82,23 @@
 				</div>
 				<input type="submit" value="提交" />
 				<input type="button" value="ajax提交" id="ajax_add_app" />
+				<span id="error_add_host"></span>
 			</form>
 		</div>
 
 		<div class="editmodel hide">
-			<form id="edit_form" method="post" action="/host">
-				<input type="text" name="nid" style="display: none;" />
+			<form id="edit_form_app" method="post" action="/app_edit_app">
+				<input type="text" name="aid" style="display: none;"/>
 				
-				<input type="text" name="hostname" placeholder="主机名" />
+				<input type="text" name="appname" placeholder="应用名" />
 	
-				<input type="text" name="ip" placeholder="IP" />
-	
-				<input type="text" name="port" placeholder="端口" />
-	
-				<select name="b_id">
-					{% for item in b_list %}
-					<option value="{{item.id}}">{{item.caption}}</option>
+				<select name="b_id" multiple>
+					{% for item in host_list %}
+					<option value="{{item.nid}}">{{item.hostname}}</option>
 					{% endfor %}
 				</select>
-	
-				<a id="ajax_edit" style="display: inline-block; padding: 5px;background-color: blue;color: white;">提交</a>
+				<input type="submit" value="提交" />
+				<a id="ajax_edit_app" style="display: inline-block; padding: 5px;background-color: blue;color: white;">提交</a>
 				<span id="edit_error"></span>
 			</form>
 		</div>
@@ -119,11 +121,20 @@
 						type:"POST",
 						url:"/ajax_add_app",
 						async:true,
-						data:{'user':'user','host_list':[1,2,3,4]},
+						//直接传列表，后端无法解析，需要增加traditional:true来序列化参数，这样后端通过getlist获取host_list
+						traditional:true,
+						//数据传递方式一
+						//data:{'user':'user','host_list':[1,2,3,4]},
+						//数据传递方式二
+						data:$('#add_form_app').serialize(),
 						//增加数据格式之后，不需要在success中再对返回的data进行JSON.parse转换成对象，而是后台传过来的直接就是对象
 						dataType:'JSON',
 						success:function(obj){
-							console.log(obj);
+							if(obj.status){
+								location.reload();
+							}else{
+								$('#error_add_host').text(obj.error)
+							}
 						},
 						//并不是后台具体业务逻辑返回错误，而是请求发送后，后台没有捕捉到返回的错误
 						error:function(){
@@ -132,6 +143,89 @@
 					});
 				})
 				
+				$('.edit_app').click(function(){
+					$('.editmodel,.shade').removeClass('hide');
+					var nid = $(this).parent().parent().attr('host_id');
+					var tds = $(this).parent().prevAll();
+					appname = $(tds[1]).text()
+					$('#edit_form_app').find('input[name=aid]').val(nid);
+					$('#edit_form_app').find('input[name=appname]').val(appname);
+					
+					var hid_list=[];
+					$(tds[0]).children().each(function(){
+						var hid = $(this).attr('hid');
+						hid_list.push(hid);
+					})
+					$('#edit_form_app').find('select').val(hid_list);
+				})
+				
+				$('#ajax_edit_app').click(function(){
+					$.ajax({
+						type:"POST",
+						url:"ajax_edit_app",
+						async:true,
+						dataType:'JSON',
+						traditional:true,
+						data:$('#edit_form_app').serialize(),
+						success:function(obj){
+							if(obj.status){
+								location.reload();
+							}else{
+								$('#edit_error').text(obj.error)
+							}
+						},
+						error:function(){
+							
+						},
+					});
+				})
+				
+				$('.delete_app').click(function(){
+					var host_id = $(this).parent().attr('hid');
+					var app_id = $(this).parent().parent().parent().attr('host_id');
+					$.ajax({
+						type:"POST",
+						url:"ajax_del_appname",
+						async:true,
+						data:{'host_id':host_id,'app_id':app_id},
+						dataType:'JSON',
+						success:function(obj){
+							if(obj.status){
+								location.reload();
+							}else{
+								$('#global_err').text(obj.error)
+							}
+						},
+						error:function(){
+							
+						}
+					});
+				})
+				
+				$('.del_line').click(function(){
+					var app_id = $(this).parent().parent().attr('host_id');
+					if(confirm('是否确认删除整行')){
+						$.ajax({
+						type:"POST",
+						url:"ajax_del_line",
+						async:true,
+						data:{'app_id':app_id},
+						dataType:'JSON',
+						success:function(obj){
+							if(obj.status){
+								location.reload();
+							}else{
+								$('#global_err').text(obj.error)
+							}
+						},
+						error:function(){
+							
+						}
+					});
+					}else{
+						return;
+					}
+				})
 			})
 			
 			
