@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<!--
+	作者：zjj7842806@163.com
+	时间：2017-02-28
+	描述：后台管理页面，主要实现的是基础的页面布局，左侧的菜单栏保持不变，右侧的内容栏可以做到超长后出现
+	滚动条，制作顶部的header
+	主要用到的css样式有：
+	1.增加各种小图标的获取和显示，获取网站http://fontawesome.io/icons/
+		然后再head当中引入样式，在网站中找到图标的代码，粘贴进来即可
+	2.在内容页增加一张带链接的图片，使用a标签（链接标签），a标签中放一个img标签，制定图片路径
+	  会有一个问题，就是在ie低版本中，图像四周出现一个蓝色的边框，ie高版本，火狐和Chrome都没这个问题。
+	  原因是a标签是链接标签，会自动给标签里面的内容加上一些颜色，所以要去掉这个，可以统一加一个css样式，img{border: 0}
+	3.增加左侧菜单，菜单内三个内容标签，增加hide样式，点击菜单展开当前菜单的内容，隐藏其他菜单的内容（使用dom的形式实现，后期使用jQuery，更简单）
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<!-- 引入图标的文件夹font-awesome-4.7.0，引用css样式文件，
+			font-awesome.min.css和font-awesome.css区别是min是压缩版，线上都用压缩版
+			压缩版的是一行代码
+		-->
+		<link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" href="../static/common.css" />
+		<title>{% block title%}{% endblock %}</title>
+		<!--
+        	作者：zjj7842806@163.com
+        	时间：2018-03-22
+        	描述：用来给子html添加自有的css样式
+        -->
+		{% block css%}{% endblock %}
+	</head>
+	<body>
+		<div class="pg-header">
+			<div class="logo left">
+				<a href="http://www.sogou.com"><img src="../static/img/dir_logo.gif" style="width: 200px; height: 48px;"/></a>
+			</div>
+			
+			<div class="user right" style="position: relative;">
+				<!-- 用户头像，链接使用a标签，图片方形，变成圆的，使用border-radius -->
+				<a class="a" href="#">
+					<img  src="../static/img/ddd.jpg" "/>
+				</a>
+				<!-- 会跟下面content的定位内容产生遮挡冲突，所以使用分层，z-index，只要content的小于 -->
+				<div class="b" >
+					<a>个人资料</a>
+					<a>注销</a>
+				</div>
+			</div>
+			<div class="icon right">
+				<i class="fa fa-envelope-o" aria-hidden="true"></i>
+				<span>1</span>
+			</div>
+			<div class="icon right">
+				<i class="fa fa-bell-o" aria-hidden="true"></i>
+			</div>
+		</div>
+		<div class="pg-content" >
+            <div class="menu left">
+            	<div class="item">
+            		<div id="i1" class="item_header" onclick="changeMenu('i1')">菜单1</div>
+            		<div class="item_content hide">
+            			<div>内容1</div>
+            			<div>内容1</div>
+            			<div>内容1</div>
+            		</div>
+            	</div>
+            	<div class="item">
+            		<div id="i2" class="item_header" onclick="changeMenu('i2')">菜单2</div>
+            		<div class="item_content hide">
+            			<div>内容2</div>
+            			<div>内容2</div>
+            			<div>内容2</div>
+            		</div>
+            	</div>
+            	<div class="item">
+            		<div id="i3" class="item_header" onclick="changeMenu('i3')">菜单3</div>
+            		<div class="item_content hide">
+            			<div>内容3</div>
+            			<div>内容3</div>
+            			<div>内容3</div>
+            		</div>
+            	</div>
+            </div>
+            <div class="content right">
+            	<!--<a href="http://www.sogou.com">
+            		<img src="../static/img/ddd.jpg" style="width: 200px; height: 200px;" />
+            	</a>-->
+            	<!-- 制作一个页面右下角返回顶部的功能-->
+            	<div style="width: 50px;height: 50px;position: fixed;bottom: 0;right: 0;background-color: blue;"></div>
+            	<!-- 之所以把所有p标签包在一个div当中，是因为，如果在父div当中设置背景颜色有高度，所以把子div做背景色就正常了 -->
+            	<div style="background-color:darkgoldenrod ;">
+            		{% block content%}{% endblock %}
+            	</div>
+            </div>
+		</div>
+		<div class="pg-footer"></div>
+		<script type="application/javascript">
+			function changeMenu(nid){
+				//获取当前id的item
+				var current_header = document.getElementById(nid);
+				//根据当前item查找整个菜单的列表
+				var item_list = current_header.parentElement.parentElement.children;
+				//遍历每一个菜单，给菜单美容增加样式hide
+				for(var i=0;i<item_list.length;i++){
+					current_item = item_list[i];
+					//给每个菜单的第二个元素，也就是内容增加hide样式
+					current_item.children[1].classList.add('hide');
+				}
+				//当前点击的元素的下一个兄弟元素，去掉hide，展开
+				current_header.nextElementSibling.classList.remove('hide');
+			}
+		</script>
+		<!--
+        	作者：zjj7842806@163.com
+        	时间：2018-03-22
+        	描述：用来给子html添加自有的script
+        -->
+		{% block js%}{% endblock %}
+	</body>
+</html>
