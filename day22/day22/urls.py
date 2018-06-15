@@ -1,4 +1,4 @@
-"""day21 URL Configuration
+"""day22 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -14,20 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,re_path,include
-from app01 import views as app1
-from app02 import views as app2
+from django.urls import path,re_path
 from django.conf import settings
 from django.conf.urls.static import static
+from app01 import views as app01
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path('^index$', app1.index, {'name':'root'}),
-    re_path('^index2$', app1.index2),
-    re_path('^user_list', app1.user_list),
-    re_path('^login$', app1.login),
-    re_path('^home$', app1.home),
-    # re_path('^testurl$', views.testurl),
-    re_path(r'^a/', include('app02.urls', namespace='author-polls')),
-    re_path(r'^b/', include('app02.urls', namespace='publisher-polls')),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    re_path(r'^login$',app01.login),
+    re_path(r'^index$',app01.index),
+    re_path(r'^logout$',app01.logout)
+]

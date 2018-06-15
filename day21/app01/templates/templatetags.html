@@ -1,0 +1,27 @@
+{% load xxoo %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+	</head>
+	<body>
+		{{name}}
+		<!--
+        	作者：zjj7842806@163.com
+        	时间：2018-03-23
+        	描述：使用内置函数处理,需要传参的话，函数名空格加参数
+        -->
+		{{name|lower}}
+		<!--
+        	描述：使用方式一，使用@register.simple_tag，可以传多个参数
+        -->
+		{% ooo 1 6 %}
+		<!--
+        	描述：使用方式二，使用@register.filter,但是最多传2个参数，优势是，可以在判断的时候使用 if "zhangjj" | bbb:"jiayou" ，simpile_tag就不行
+        -->
+		{{"zhangjj" | bbb:"jiayou"}}
+	</body>
+</html>

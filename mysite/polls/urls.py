@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-__title__ = '创建自定义模板使用函数'
+__title__ = ''
 __author__ = 'zhangjingjun'
-__mtime__ = '2018/3/23'
+__mtime__ = '2018/6/14'
 # ----------Dragon be here!----------
               ┏━┓      ┏━┓
             ┏━┛ ┻━━━━━━┛ ┻━━┓
@@ -20,16 +20,14 @@ __mtime__ = '2018/3/23'
                    ┃ ┫ ┫   ┃ ┫ ┫
                    ┗━┻━┛   ┗━┻━┛
 """
+from django.urls import path
 
-from django import template
-from django.utils.safestring import mark_safe
+from . import views
 
-register = template.Library()
-
-@register.simple_tag
-def ooo(a1,a2):
-    return a1 + a2
-
-@register.filter
-def bbb(b1,b2):
-	return b1 + b2
+app_name = 'polls'
+urlpatterns = [
+    path('', views.IndexView.as_view(), name='index'),
+    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
+    path('<int:question_id>/vote/', views.vote, name='vote'),
+]
