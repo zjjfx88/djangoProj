@@ -1,0 +1,268 @@
+*** Starting uWSGI 2.0.17 (64bit) on [Fri Jun 15 19:42:27 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-4) on 15 June 2018 09:08:44
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: bjsjs_120_30
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /search/odin/pypro/djangoProj/mysite/script
+writing pidfile to /search/odin/pypro/djangoProj/mysite/script/uwsgi.pid
+detected binary path: /usr/local/bin/uwsgi
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /search/odin/pypro/djangoProj/mysite/
+your processes number limit is 32768
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+building mime-types dictionary from file /etc/mime.types...1060 entry found
+lock engine: pthread robust mutexes
+thunder lock: enabled
+bind(): Cannot assign requested address [core/socket.c line 769]
+*** Starting uWSGI 2.0.17 (64bit) on [Fri Jun 15 19:52:29 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-4) on 15 June 2018 09:08:44
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: bjsjs_120_30
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /search/odin/pypro/djangoProj/mysite/script
+writing pidfile to /search/odin/pypro/djangoProj/mysite/script/uwsgi.pid
+detected binary path: /usr/local/bin/uwsgi
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /search/odin/pypro/djangoProj/mysite/
+your processes number limit is 32768
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+building mime-types dictionary from file /etc/mime.types...1060 entry found
+lock engine: pthread robust mutexes
+thunder lock: enabled
+bind(): Cannot assign requested address [core/socket.c line 769]
+*** Starting uWSGI 2.0.17 (64bit) on [Fri Jun 15 20:33:48 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-4) on 15 June 2018 09:08:44
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: bjsjs_120_30
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /search/odin/pypro/djangoProj/mysite/script
+writing pidfile to /search/odin/pypro/djangoProj/mysite/script/uwsgi.pid
+detected binary path: /usr/local/bin/uwsgi
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /search/odin/pypro/djangoProj/mysite/
+your processes number limit is 32768
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+building mime-types dictionary from file /etc/mime.types...1060 entry found
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 10.144.120.30:8080 fd 3
+uwsgi socket 0 bound to UNIX address /search/odin/pypro/djangoProj/mysite/script/uwsgi.sock fd 6
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.5 (default, Jun 13 2018, 12:38:34)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-4)]
+Python main interpreter initialized at 0x20d7f00
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486672 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x20d7f00 pid: 76998 (default app)
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 76998)
+spawned uWSGI worker 1 (pid: 77082, cores: 1)
+spawned uWSGI worker 2 (pid: 77083, cores: 1)
+spawned uWSGI worker 3 (pid: 77084, cores: 1)
+spawned uWSGI worker 4 (pid: 77085, cores: 1)
+spawned uWSGI worker 5 (pid: 77086, cores: 1)
+spawned uWSGI http 1 (pid: 77087)
+[pid: 77082|app: 0|req: 1/1] 10.129.152.42 () {42 vars in 718 bytes} [Fri Jun 15 12:46:41 2018] GET /polls => generated 0 bytes in 6 msecs (HTTP/1.1 301) 3 headers in 112 bytes (1 switches on core 0)
+[pid: 77083|app: 0|req: 1/2] 10.129.152.42 () {42 vars in 720 bytes} [Fri Jun 15 12:46:41 2018] GET /polls/ => generated 353 bytes in 31 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+Not Found: /404.html
+[pid: 77084|app: 0|req: 1/3] 10.129.152.42 () {40 vars in 648 bytes} [Fri Jun 15 12:46:41 2018] GET /static/polls/style.css => generated 2068 bytes in 12 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 77085|app: 0|req: 1/4] 10.129.152.42 () {42 vars in 736 bytes} [Fri Jun 15 12:46:45 2018] GET /polls/1/ => generated 733 bytes in 34 msecs (HTTP/1.1 200) 5 headers in 277 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.17 (64bit) on [Fri Jun 15 20:51:12 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-4) on 15 June 2018 09:08:44
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: bjsjs_120_30
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /search/odin/pypro/djangoProj/mysite/script
+writing pidfile to /search/odin/pypro/djangoProj/mysite/script/uwsgi.pid
+detected binary path: /usr/local/bin/uwsgi
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /search/odin/pypro/djangoProj/mysite/
+your processes number limit is 32768
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+building mime-types dictionary from file /etc/mime.types...1060 entry found
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 10.144.120.30:8080 fd 3
+uwsgi socket 0 bound to UNIX address /search/odin/pypro/djangoProj/mysite/script/uwsgi.sock fd 6
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.5 (default, Jun 13 2018, 12:38:34)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-4)]
+Python main interpreter initialized at 0xeaced0
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486672 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+*** no app loaded. going in full dynamic mode ***
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 12630)
+spawned uWSGI worker 1 (pid: 12700, cores: 1)
+spawned uWSGI worker 2 (pid: 12702, cores: 1)
+spawned uWSGI worker 3 (pid: 12706, cores: 1)
+spawned uWSGI worker 4 (pid: 12708, cores: 1)
+spawned uWSGI worker 5 (pid: 12709, cores: 1)
+spawned uWSGI http 1 (pid: 12710)
+--- no python application found, check your startup logs for errors ---
+[pid: 12706|app: -1|req: -1/1] 10.129.152.42 () {44 vars in 809 bytes} [Fri Jun 15 20:51:23 2018] GET /polls/ => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 12702|app: -1|req: -1/2] 10.129.152.42 () {44 vars in 809 bytes} [Fri Jun 15 20:52:04 2018] GET /polls/ => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+*** Starting uWSGI 2.0.17 (64bit) on [Fri Jun 15 20:52:15 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-4) on 15 June 2018 09:08:44
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: bjsjs_120_30
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /search/odin/pypro/djangoProj/mysite/script
+writing pidfile to /search/odin/pypro/djangoProj/mysite/script/uwsgi.pid
+detected binary path: /usr/local/bin/uwsgi
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /search/odin/pypro/djangoProj/mysite/
+your processes number limit is 32768
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+building mime-types dictionary from file /etc/mime.types...1060 entry found
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 10.144.120.30:8080 fd 3
+uwsgi socket 0 bound to UNIX address /search/odin/pypro/djangoProj/mysite/script/uwsgi.sock fd 6
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.5 (default, Jun 13 2018, 12:38:34)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-4)]
+Python main interpreter initialized at 0x295ef00
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486672 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x295ef00 pid: 32064 (default app)
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 32064)
+spawned uWSGI worker 1 (pid: 32152, cores: 1)
+spawned uWSGI worker 2 (pid: 32153, cores: 1)
+spawned uWSGI worker 3 (pid: 32154, cores: 1)
+spawned uWSGI worker 4 (pid: 32155, cores: 1)
+spawned uWSGI worker 5 (pid: 32156, cores: 1)
+spawned uWSGI http 1 (pid: 32157)
+[pid: 32152|app: 0|req: 1/1] 10.129.152.42 () {44 vars in 809 bytes} [Fri Jun 15 12:52:18 2018] GET /polls/ => generated 353 bytes in 31 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+Not Found: /404.html
+[pid: 32153|app: 0|req: 1/2] 10.129.152.42 () {42 vars in 737 bytes} [Fri Jun 15 12:52:18 2018] GET /static/polls/style.css => generated 2068 bytes in 12 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 32154|app: 0|req: 1/3] 10.129.152.42 () {44 vars in 809 bytes} [Fri Jun 15 12:56:11 2018] GET /polls/ => generated 353 bytes in 31 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+Not Found: /404.html
+[pid: 32155|app: 0|req: 1/4] 10.129.152.42 () {42 vars in 737 bytes} [Fri Jun 15 12:56:11 2018] GET /static/polls/style.css => generated 2068 bytes in 13 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.17 (64bit) on [Fri Jun 15 20:56:39 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-4) on 15 June 2018 09:08:44
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: bjsjs_120_30
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /search/odin/pypro/djangoProj/mysite/script
+writing pidfile to /search/odin/pypro/djangoProj/mysite/script/uwsgi.pid
+detected binary path: /usr/local/bin/uwsgi
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /search/odin/pypro/djangoProj/mysite/
+your processes number limit is 32768
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+building mime-types dictionary from file /etc/mime.types...1060 entry found
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 10.144.120.30:8080 fd 3
+uwsgi socket 0 bound to UNIX address /search/odin/pypro/djangoProj/mysite/script/uwsgi.sock fd 6
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.5 (default, Jun 13 2018, 12:38:34)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-4)]
+Python main interpreter initialized at 0xca2f00
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486672 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xca2f00 pid: 111197 (default app)
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 111197)
+spawned uWSGI worker 1 (pid: 111271, cores: 1)
+spawned uWSGI worker 2 (pid: 111272, cores: 1)
+spawned uWSGI worker 3 (pid: 111273, cores: 1)
+spawned uWSGI worker 4 (pid: 111274, cores: 1)
+spawned uWSGI worker 5 (pid: 111276, cores: 1)
+spawned uWSGI http 1 (pid: 111277)
+[pid: 111271|app: 0|req: 1/1] 10.129.152.42 () {44 vars in 809 bytes} [Fri Jun 15 12:56:42 2018] GET /polls/ => generated 353 bytes in 31 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+Not Found: /404.html
+[pid: 111272|app: 0|req: 1/2] 10.129.152.42 () {42 vars in 737 bytes} [Fri Jun 15 12:56:42 2018] GET /static/polls/style.css => generated 2068 bytes in 12 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.17 (64bit) on [Fri Jun 15 20:58:06 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-4) on 15 June 2018 09:08:44
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: bjsjs_120_30
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 40
+current working directory: /search/odin/pypro/djangoProj/mysite/script
+writing pidfile to /search/odin/pypro/djangoProj/mysite/script/uwsgi.pid
+detected binary path: /usr/local/bin/uwsgi
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /search/odin/pypro/djangoProj/mysite/
+your processes number limit is 32768
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+building mime-types dictionary from file /etc/mime.types...1060 entry found
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 10.144.120.30:8080 fd 3
+uwsgi socket 0 bound to UNIX address /search/odin/pypro/djangoProj/mysite/script/uwsgi.sock fd 6
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.5 (default, Jun 13 2018, 12:38:34)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-4)]
+Python main interpreter initialized at 0x2220f00
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486672 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x2220f00 pid: 138118 (default app)
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 138118)
+spawned uWSGI worker 1 (pid: 138206, cores: 1)
+spawned uWSGI worker 2 (pid: 138207, cores: 1)
+spawned uWSGI worker 3 (pid: 138208, cores: 1)
+spawned uWSGI worker 4 (pid: 138209, cores: 1)
+spawned uWSGI worker 5 (pid: 138210, cores: 1)
+spawned uWSGI http 1 (pid: 138211)
+[pid: 138206|app: 0|req: 1/1] 10.129.152.42 () {44 vars in 809 bytes} [Fri Jun 15 12:58:11 2018] GET /polls/ => generated 353 bytes in 31 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+Not Found: /404.html
+[pid: 138207|app: 0|req: 1/2] 10.129.152.42 () {42 vars in 737 bytes} [Fri Jun 15 12:58:11 2018] GET /static/polls/style.css => generated 2068 bytes in 12 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /404.html
+[pid: 138208|app: 0|req: 1/3] 10.129.152.42 () {42 vars in 737 bytes} [Fri Jun 15 12:58:14 2018] GET /static/polls/style.css => generated 2068 bytes in 13 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 138209|app: 0|req: 1/4] 10.129.152.42 () {44 vars in 809 bytes} [Fri Jun 15 13:01:19 2018] GET /polls/ => generated 353 bytes in 32 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 138210|app: 0|req: 1/5] 10.129.152.42 () {44 vars in 810 bytes} [Mon Jun 18 01:49:20 2018] GET /polls/ => generated 353 bytes in 32 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 138206|app: 0|req: 2/6] 10.129.152.42 () {44 vars in 810 bytes} [Mon Jun 18 01:49:23 2018] GET /polls/ => generated 353 bytes in 3 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 138207|app: 0|req: 2/7] 10.129.152.42 () {44 vars in 809 bytes} [Mon Jun 18 02:24:52 2018] GET /polls/ => generated 353 bytes in 23 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 138208|app: 0|req: 2/8] 10.129.152.42 () {44 vars in 809 bytes} [Mon Jun 18 02:26:19 2018] GET /polls/ => generated 353 bytes in 23 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
